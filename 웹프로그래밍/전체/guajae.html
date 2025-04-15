@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>삼성 스타일 메인 페이지</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* 헤더 */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+      height: 120px;
+      position: relative; /* 서브 메뉴 위치 기준 */
+    }
+
+    .logo-menu {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 40px;
+    }
+
+    .menu-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-item {
+      position: relative; /* 서브 메뉴 위치 기준 */
+    }
+
+    .menu-group > .menu-item > a {
+      text-decoration: none;
+      color: black;
+      font-size: 30px;
+      margin-left: 30px;
+      display: block; /* a 태그를 블록 요소로 만들어 hover 영역 확보 */
+      padding-bottom: 10px; /* hover 밑줄 공간 확보 */
+    }
+
+    .menu-group > .menu-item > a:hover::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background: black;
+      bottom: -5px;
+      left: 0;
+    }
+
+    .submenu {
+      position: absolute;
+      top: 100%; /* 메뉴 아이템 아래에 위치 */
+      left: 0;
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 15px 0;
+      z-index: 10; /* 다른 요소 위에 표시 */
+      display: none; /* 초기 숨김 */
+      min-width: 150px; /* 최소 너비 */
+    }
+
+    .submenu.active {
+      display: block;
+    }
+
+    .submenu a {
+      display: block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #333;
+      font-size: 24px;
+      white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    }
+
+    .submenu a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .nav {
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: black;
+      font-size: 30px;
+      position: relative;
+    }
+
+    .nav a:hover::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background: black;
+      bottom: -10px;
+      left: 0;
+    }
+
+    /* 슬라이드 (기존 스타일 유지) */
+    .slider {
+      position: relative;
+      width: 80%;
+      height: 600px;
+      overflow: hidden;
+      margin: 20px auto;
+    }
+
+    .slides {
+      display: flex;
+      width: 200%;
+      transition: transform 0.5s ease;
+    }
+
+    .slide {
+      width: 100%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      background: #f4f1ec;
+      padding: 50px;
+      gap: 30px;
+    }
+
+    .nav-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .nav-buttons button {
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo-menu">
+      <div class="logo">SAMSUNG</div>
+      <div class="menu-group">
+        <div class="menu-item">
+          <a href="#">기획전</a>
+          <div class="submenu">
+            <a href="#">전체 기획전</a>
+            <a href="#">인기 기획전</a>
+            <a href="#">최신 기획전</a>
+          </div>
+        </div>
+        <div class="menu-item">
+          <a href="#">모바일</a>
+          <div class="submenu">
+            <a href="#">갤럭시 Z 폴드</a>
+            <a href="#">갤럭시 Z 플립</a>
+            <a href="#">갤럭시 S 시리즈</a>
+            <a href="#">갤럭시 A 시리즈</a>
+          </div>
+        </div>
+        <div class="menu-item">
+          <a href="#">PC</a>
+          <div class="submenu">
+            <a href="#">갤럭시 북</a>
+            <a href="#">노트북</a>
+            <a href="#">데스크탑</a>
+            <a href="#">모니터</a>
+          </div>
+        </div>
+        <div class="menu-item">
+          <a href="#">가전</a>
+          <div class="submenu">
+            <a href="#">비스포크 냉장고</a>
+            <a href="#">세탁기</a>
+            <a href="#">건조기</a>
+            <a href="#">에어컨</a>
+          </div>
+        </div>
+        <div class="menu-item">
+          <a href="#">TV/영상</a>
+          <div class="submenu" style="min-width: 200px;">
+            <a href="#">Neo QLED 8K</a>
+            <a href="#">OLED</a>
+            <a href="#">The Frame</a>
+            <a href="#">사운드바</a>
+          </div>
+        </div>
+        <div class="menu-item">
+          <a href="#">AI</a>
+          <div class="submenu">
+            <a href="#">AI 기능 소개</a>
+            <a href="#">AI 관련 제품</a>
+          </div>
+        </div>
+        <div class="menu-item">
+          <a href="#">소모품</a>
+          <div class="submenu">
+            <a href="#">액세서리</a>
+            <a href="#">케이블</a>
+            <a href="#">충전기</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nav">
+      <a href="#">로그인</a>
+      <a href="#">회원가입</a>
+      <a href="#">마이페이지</a>
+      <a href="#">장바구니</a>
+    </div>
+  </div>
+
+
+  <div class="slider">
+    <div class="slides" id="slides">
+      <div class="slide">
+        <img id="slideImage1" src="img2.png" alt="폰 이미지" style="max-width: 80%; max-height: 80%; object-fit: contain; align-self: flex-start;">
+      </div>
+
+      <div class="slide">
+        <img id="slideImage2" src="img1.png" alt="폰 이미지" style="max-width: 80%; max-height: 80%; object-fit: contain; align-self: flex-start;">
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button onclick="prevSlide()">&#10094;</button>
+      <button onclick="nextSlide()">&#10095;</button>
+    </div>
+  </div>
+
+  <script>
+    const menuItems = document.querySelectorAll('.menu-item');
+
+    menuItems.forEach(item => {
+      const submenu = item.querySelector('.submenu');
+      const anchor = item.querySelector('a');
+
+      if (submenu) {
+        item.addEventListener('mouseenter', () => {
+          submenu.classList.add('active');
+        });
+
+        item.addEventListener('mouseleave', () => {
+          submenu.classList.remove('active');
+        });
+      }
+    });
+
+    let slideIndex = 0;
+    const slides = document.getElementById("slides");
+
+    function showSlide(index) {
+      slides.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % 2;
+      showSlide(slideIndex);
+    }
+
+    function prevSlide() {
+      slideIndex = (slideIndex - 1 + 2) % 2;
+      showSlide(slideIndex);
+    }
+
+    setInterval(nextSlide, 5000);
+  </script>
+</body>
+</html>

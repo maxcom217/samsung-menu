@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>이미지 뷰어</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .image-container {
+            width: 80%;
+            max-width: 600px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        #displayedImage {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        #fileInput {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        #fileInput::-webkit-file-upload-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #fileInput::-webkit-file-upload-button:hover {
+            background-color: #0056b3;
+        }
+
+        #errorMessage {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>이미지 뷰어</h1>
+    <input type="file" id="fileInput" accept="image/*">
+    <div class="image-container">
+        <img id="displayedImage" src="#" alt="선택된 이미지">
+    </div>
+    <div id="errorMessage"></div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const displayedImage = document.getElementById('displayedImage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    displayedImage.src = e.target.result;
+                    errorMessage.textContent = '';
+                }
+
+                reader.onerror = function() {
+                    errorMessage.textContent = '이미지 파일을 읽는 데 실패했습니다.';
+                    displayedImage.src = '#';
+                }
+
+                reader.readAsDataURL(file);
+            } else {
+                displayedImage.src = '#';
+                errorMessage.textContent = '';
+            }
+        });
+    </script>
+</body>
+</html>

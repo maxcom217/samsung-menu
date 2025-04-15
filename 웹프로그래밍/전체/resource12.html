@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>삼성 스타일 메인 페이지</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* 헤더 */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+      height: 120px; /* 변경: 헤더 높이 증가 */
+    }
+
+    .logo-menu {
+      display: flex;
+      align-items: center;
+      gap: 50px; /* 변경: 로고와 메뉴 간 간격 증가 */
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 40px; /* 변경: 로고 폰트 크기 증가 */
+    }
+
+    .menu-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-group a {
+      text-decoration: none;
+      color: black;
+      font-size: 30px; /* 변경: 메뉴 폰트 크기 증가 */
+      margin-left: 30px; /* 변경: 메뉴 간 간격 증가 */
+    }
+
+    .nav {
+      display: flex;
+      gap: 40px; /* 변경: 네비게이션 링크 간 간격 증가 */
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: black;
+      font-size: 30px; /* 변경: 네비게이션 링크 폰트 크기 증가 */
+      position: relative;
+    }
+
+    .nav a:hover::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 4px; /* 변경: hover 밑줄 두께 증가 */
+      background: black;
+      bottom: -10px; /* 변경: hover 밑줄 위치 조정 */
+      left: 0;
+    }
+
+    /* 슬라이드 */
+    .slider {
+      position: relative;
+      width: 80%; /* 유지: 슬라이더 너비 */
+      height: 600px; /* 유지: 슬라이더 높이 */
+      overflow: hidden;
+      margin: 20px auto; /* 유지: 중앙 정렬 및 상하 여백 */
+    }
+
+    .slides {
+      display: flex;
+      width: 200%;
+      transition: transform 0.5s ease;
+    }
+
+    .slide {
+      width: 100%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: flex-start; /* 유지: 세로 방향 위쪽 정렬 */
+      justify-content: flex-start; /* 유지: 가로 방향 왼쪽 정렬 */
+      background: #f4f1ec;
+      padding: 50px;
+      gap: 30px;
+    }
+
+    .nav-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .nav-buttons button {
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo-menu">
+      <div class="logo">SAMSUNG</div>
+      <div class="menu-group">
+        <a href="#">기획전</a>
+        <a href="#">모바일</a>
+        <a href="#">PC</a>
+        <a href="#">가전</a>
+        <a href="#">TV/영상</a>
+        <a href="#">AI</a>
+        <a href="#">소모품</a>
+      </div>
+    </div>
+    <div class="nav">
+      <a href="#">로그인</a>
+      <a href="#">회원가입</a>
+      <a href="#">마이페이지</a>
+      <a href="#">장바구니</a>
+    </div>
+  </div>
+
+
+  <div class="slider">
+    <div class="slides" id="slides">
+      <div class="slide">
+        <img id="slideImage1" src="img2.png" alt="폰 이미지" style="max-width: 80%; max-height: 80%; object-fit: contain; align-self: flex-start;">
+      </div>
+
+      <div class="slide">
+        <img id="slideImage2" src="img1.png" alt="폰 이미지" style="max-width: 80%; max-height: 80%; object-fit: contain; align-self: flex-start;">
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button onclick="prevSlide()">&#10094;</button>
+      <button onclick="nextSlide()">&#10095;</button>
+    </div>
+  </div>
+
+  <script>
+    let slideIndex = 0;
+    const slides = document.getElementById("slides");
+    const slider = document.querySelector(".slider");
+    const slideImage1 = document.getElementById("slideImage1");
+    const slideImage2 = document.getElementById("slideImage2");
+
+    function resizeImages() {
+      // 더 이상 이미지 크기를 조정하지 않습니다.
+    }
+
+    function showSlide(index) {
+      slides.style.transform = `translateX(-${index * 100}%)`;
+      resizeImages();
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % 2;
+      showSlide(slideIndex);
+    }
+
+    function prevSlide() {
+      slideIndex = (slideIndex - 1 + 2) % 2;
+      showSlide(slideIndex);
+    }
+
+    // 자동 슬라이드 시작
+    setInterval(nextSlide, 5000);
+  </script>
+</body>
+</html>

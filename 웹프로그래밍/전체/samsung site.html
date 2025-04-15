@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>삼성 스타일 메인 페이지</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    /* 헤더 */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+      height: 60px;
+    }
+
+    .logo-menu {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .menu-group a {
+      text-decoration: none;
+      color: black;
+      font-size: 15px;
+      margin-right: 15px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: black;
+      font-size: 15px;
+      position: relative;
+    }
+
+    .nav a:hover::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: black;
+      bottom: -5px;
+      left: 0;
+    }
+
+    /* 슬라이드 */
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    .slides {
+      display: flex;
+      width: 200%;
+      transition: transform 0.5s ease;
+    }
+
+    .slide {
+      width: 100%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f4f1ec;
+      padding: 50px;
+      gap: 30px;
+    }
+
+    .slide img {
+      width: 300px;
+      height: auto;
+    }
+
+    .slide-text {
+      max-width: 500px;
+    }
+
+    .slide-text h2 {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .slide-text p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+
+    .slide-buttons button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+
+    .btn-black {
+      background-color: black;
+      color: white;
+    }
+
+    .btn-white {
+      background-color: white;
+      border: 1px solid #ccc;
+    }
+
+    .nav-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .nav-buttons button {
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 헤더 -->
+  <!-- 헤더 -->
+<div class="header">
+  <div class="logo-menu">
+    <div class="logo">SAMSUNG</div>
+    <div class="menu-group">
+      <a href="#">기획전</a>
+      <a href="#">모바일</a>
+      <a href="#">PC</a>
+      <a href="#">가전</a>
+      <a href="#">TV/영상</a>
+      <a href="#">AI</a>
+      <a href="#">소모품</a>
+    </div>
+  </div>
+</div>
+
+
+  <!-- 슬라이더 -->
+  <div class="slider">
+    <div class="slides" id="slides">
+      <!-- Slide 1 -->
+      <div class="slide">
+        <img src="phone.png" alt="폰 이미지" />
+        <div class="slide-text">
+          <p>더 빈틈없고 더 여유로운 진짜 키친핏</p>
+          <h2>New AI 하이브리드 키친핏 Max 런칭</h2>
+          <p>최대 40만원 할인 + 3년 무상 A/S</p>
+          <div class="slide-buttons">
+            <button class="btn-white">사전 런칭 이벤트 참여하기</button>
+            <button class="btn-black">구매 혜택 보기</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="img1.png" alt="폰 이미지" />
+        <div class="slide-text">
+          <p>스마트한 리빙을 위한 선택</p>
+          <h2>AI 맞춤형 생활가전</h2>
+          <p>최신 기술로 집안일을 더 쉽게</p>
+          <div class="slide-buttons">
+            <button class="btn-white">제품 보기</button>
+            <button class="btn-black">더 알아보기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 슬라이드 내비 버튼 -->
+    <div class="nav-buttons">
+      <button onclick="prevSlide()">&#10094;</button>
+      <button onclick="nextSlide()">&#10095;</button>
+    </div>
+  </div>
+
+  <script>
+    let slideIndex = 0;
+    const slides = document.getElementById("slides");
+
+    function showSlide(index) {
+      slides.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % 2;
+      showSlide(slideIndex);
+    }
+
+    function prevSlide() {
+      slideIndex = (slideIndex - 1 + 2) % 2;
+      showSlide(slideIndex);
+    }
+
+    setInterval(nextSlide, 5000);
+  </script>
+</body>
+</html>
